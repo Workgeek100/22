@@ -1,5 +1,8 @@
 import * as React from 'react';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import {Header} from 'react-native-elements';
+import firebase from 'firebase';
+import db from '../config';
 
 export default class WriteStoryScreen extends React.Component {
 constructor(props){
@@ -9,6 +12,14 @@ constructor(props){
         author : " ",
         writeStory: " "
     }
+}
+
+submitStory = async()=>{
+    db.collection("transactions").add({
+        "title" : this.state.title,
+        "author" : this.state.author,
+        "story" : this.state.writeStory
+    })
 }
 
     render(){
@@ -41,7 +52,10 @@ constructor(props){
                     })
                 }} />
                 <TouchableOpacity 
-                style = {styles.button}>
+                style = {styles.button}
+                onPress = {()=>{
+                    this.submitStory();
+                }}>
                     <Text>SUBMIT</Text>
                 </TouchableOpacity>
                 </KeyboardAvoidingView>
