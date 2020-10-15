@@ -20,6 +20,7 @@ submitStory = async()=>{
         "author" : this.state.author,
         "story" : this.state.writeStory
     })
+    return Alert.alert("Your Story /has Been Submitted.")
 }
 
     render(){
