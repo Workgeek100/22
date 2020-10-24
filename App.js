@@ -5,12 +5,14 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import WriteStoryScreen from './screens/WriteStoryScreen';
 import ReadStoryScreen from './screens/ReadStoryScreen';
 import MyHeader from './components/MyHeader';
+import firebase from 'firebase';
+import db from './config';
 
 export default class App extends React.Component {
   render(){
     return(
       <View style = {styles.container}>
-        <MyHeader />
+        <MyHeader title = "Story Hub"/>
         <AppContainer />
       </View>
     )

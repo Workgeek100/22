@@ -12,20 +12,20 @@ constructor(props){
     this.state = {
         title : " ",
         author : " ",
-        writeStory: " "
+        writtenStory: " "
     }
 }
 
-submitStory = async()=>{
+submitStory = ()=>{
     db.collection("submissions").add({
         title : this.state.title,
         author : this.state.author,
-        story : this.state.writeStory
+        story : this.state.writtenStory
     })
     this.setState({
         title : " ",
         author : " ",
-        writeStory : " "
+        writtenStory : " "
     })
     Alert.alert("Your story has been submitted.")
 }
@@ -61,10 +61,8 @@ submitStory = async()=>{
                 }} />
                 <TouchableOpacity 
                 style = {styles.button}
-                onPress = {()=>{
-                    this.submitStory();
-                }}>
-                    <Text>Submit</Text>
+                onPress = {this.submitStory}>
+                    <Text style = {styles.submitButtonText}>Submit</Text>
                 </TouchableOpacity>
                 </KeyboardAvoidingView>
             </View>

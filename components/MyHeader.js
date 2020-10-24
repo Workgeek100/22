@@ -5,7 +5,7 @@ export default class MyHeader extends React.Component {
     render(){
         return(
             <View style = {styles.container}>
-                <Text style = {styles.text}>Story Hub</Text>
+                <Text style = {styles.text}>{this.props.title}</Text>
             </View>
         )
     }
