@@ -1,16 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import WriteStoryScreen from './screens/WriteStoryScreen';
 import ReadStoryScreen from './screens/ReadStoryScreen';
-import Header from './Header';
+import MyHeader from './components/MyHeader';
 
 export default class App extends React.Component {
   render(){
     return(
       <View style = {styles.container}>
-        <Header />
+        <MyHeader />
         <AppContainer />
       </View>
     )
@@ -43,7 +43,6 @@ const TabNavigator = createBottomTabNavigator({
 })
 
 const AppContainer = createAppContainer(TabNavigator)
-
 
 const styles = StyleSheet.create({
   container: {

@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoi
 import {Header} from 'react-native-elements';
 import firebase from 'firebase';
 import db from '../config';
+import MyHeader from '../components/MyHeader';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 export default class WriteStoryScreen extends React.Component {
 constructor(props){
@@ -15,12 +17,17 @@ constructor(props){
 }
 
 submitStory = async()=>{
-    db.collection("transactions").add({
-        "title" : this.state.title,
-        "author" : this.state.author,
-        "story" : this.state.writeStory
+    db.collection("submissions").add({
+        title : this.state.title,
+        author : this.state.author,
+        story : this.state.writeStory
     })
-    return Alert.alert("Your Story /has Been Submitted.")
+    this.setState({
+        title : " ",
+        author : " ",
+        writeStory : " "
+    })
+    Alert.alert("Your story has been submitted.")
 }
 
     render(){
@@ -29,7 +36,7 @@ submitStory = async()=>{
                 <KeyboardAvoidingView>
                 <TextInput 
                 style = {styles.inputBox}
-                placeholder = {"Title of the story"}
+                placeholder = {"Story title"}
                 onChangeText = {(text)=>{
                     this.setState({
                     title : text
@@ -37,7 +44,7 @@ submitStory = async()=>{
                 }} />
                 <TextInput
                 style = {styles.inputBox}
-                placeholder = {"Author of the story"}
+                placeholder = {"Story author"}
                 onChangeText = {(text)=>{
                     this.setState({
                         author : text
@@ -45,7 +52,7 @@ submitStory = async()=>{
                 }} />
                 <TextInput
                 style = {styles.inputBox2}
-                placeholder = {"Write the story"}
+                placeholder = {"Write your story"}
                 multiline = {true}
                 onChangeText = {(text)=>{
                     this.setState({
@@ -57,7 +64,7 @@ submitStory = async()=>{
                 onPress = {()=>{
                     this.submitStory();
                 }}>
-                    <Text>SUBMIT</Text>
+                    <Text>Submit</Text>
                 </TouchableOpacity>
                 </KeyboardAvoidingView>
             </View>
@@ -67,41 +74,42 @@ submitStory = async()=>{
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: "lightblue",
+        flex:1,
+        backgroundColor : "white",
     },
     inputBox:{
-        backgroundColor:"yellow",
-        marginTop:"2%",
+        backgroundColor:"white",
+        marginTop:"5%",
         width:"90%",
-        height:50,
+        height:"10%",
         justifyContent:'center',
         alignItems:'center',
         marginLeft:"5%",
-        borderWidth:2,
-        borderColor:'blue',
-        borderRadius:5
+        borderWidth:RFValue(2),
+        borderColor:'black',
+        borderRadius:RFValue(5)
     },
     inputBox2:{
-        backgroundColor:"yellow",
-        marginTop:"2%",
+        backgroundColor:"white",
+        marginTop:"5%",
         width:"90%",
-        height:"50%",
+        height:RFValue(200),
         justifyContent:'center',
         alignItems:'center',
         marginLeft:"5%",
-        borderWidth:2,
-        borderColor:'blue',
-        borderRadius:5
+        borderWidth:RFValue(2),
+        borderColor:'black',
+        borderRadius:RFValue(5)
     },
     button:{
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:"yellow",
+        backgroundColor:"lightgreen",
         width:"20%",
-        borderWidth:2,
+        borderWidth:RFValue(2),
         marginTop:"5%",
-        height:"10%",
+        height:"8%",
         marginLeft:"38%",
-        borderRadius:5
+        borderRadius:RFValue(5)
     }
 })
